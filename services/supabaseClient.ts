@@ -49,8 +49,8 @@ import { Trade, DailyNote, TradeType, TradeStatus } from '../types.ts';
   create policy "Users can update own notes" on daily_notes for update using (auth.uid() = user_id);
 */
 
-const SUPABASE_URL = 'https://jjeqtepxmfqnbzeymbof.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpqZXF0ZXB4bWZxbmJ6ZXltYm9mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUzNTQxNzgsImV4cCI6MjA4MDkzMDE3OH0.sHJvUM-WtkHlR2GR5lqwEPvS8FcN-MuFqMfFHqiV870';
+const SUPABASE_URL = 'https://uanoonlslakwkhzlapuk.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVhbm9vbmxzbGFrd2toemxhcHVrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU0Mzk4MDksImV4cCI6MjA4MTAxNTgwOX0.u7hQQAXERYcZdCIFWV4UG-h3cSThrZi3SPZGTLg7t7s';
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -76,7 +76,7 @@ export const fetchTrades = async (): Promise<Trade[]> => {
     quantity: Number(t.quantity),
     stopLoss: t.stop_loss ? Number(t.stop_loss) : undefined,
     takeProfit: t.take_profit ? Number(t.take_profit) : undefined,
-    pnl: t.pnl ? Number(t.pnl) : undefined,
+    pnl: t.pnl !== null ? Number(t.pnl) : undefined,
     setup: t.setup || '',
     notes: t.notes || '',
     tags: t.tags || []
@@ -88,22 +88,24 @@ export const saveTradeToDb = async (trade: Trade) => {
   if (!user) throw new Error("No user logged in");
 
   const dbTrade = {
-    id: trade.id, // Assuming UUID is passed, otherwise DB generates it if omitted, but for upsert we need it
+    id: trade.id,
     user_id: user.id,
     symbol: trade.symbol,
     type: trade.type,
     status: trade.status,
     entry_date: trade.entryDate,
-    expiry_date: trade.expiryDate,
     entry_price: trade.entryPrice,
-    exit_price: trade.exitPrice,
     quantity: trade.quantity,
-    stop_loss: trade.stopLoss,
-    take_profit: trade.takeProfit,
-    pnl: trade.pnl,
     setup: trade.setup,
     notes: trade.notes,
-    tags: trade.tags
+    tags: trade.tags || [],
+    
+    // Handle optional fields: send NULL if undefined to allow DB to handle it gracefully
+    expiry_date: trade.expiryDate || null,
+    exit_price: trade.exitPrice !== undefined ? trade.exitPrice : null,
+    stop_loss: trade.stopLoss !== undefined ? trade.stopLoss : null,
+    take_profit: trade.takeProfit !== undefined ? trade.takeProfit : null,
+    pnl: trade.pnl !== undefined ? trade.pnl : null,
   };
 
   const { error } = await supabase
@@ -133,10 +135,6 @@ export const saveDailyNoteToDb = async (note: DailyNote) => {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) throw new Error("No user logged in");
 
-  // We need to handle the unique constraint manually or let upsert handle it via ON CONFLICT
-  // But daily_notes needs an ID for primary key if we want standard rows.
-  // We used unique(user_id, date) in schema, so upsert works on conflict.
-  
   const { error } = await supabase.from('daily_notes').upsert({
     user_id: user.id,
     date: note.date,

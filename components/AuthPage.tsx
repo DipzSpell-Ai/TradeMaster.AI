@@ -92,8 +92,14 @@ const AuthPage: React.FC<AuthPageProps> = ({ onLogin }) => {
                 }
             });
             if (error) throw error;
-            setMessage('Account created! You can now log in.');
-            setIsLogin(true);
+            
+            // Check if session exists (auto-login) or if email confirmation is required
+            if (data.session) {
+                setMessage('Account created! Logging you in...');
+            } else {
+                setMessage('Account created! Please check your email to confirm your registration.');
+                // Don't switch to login immediately so they can see the message
+            }
         }
     } catch (err: any) {
         setError(err.message || 'An error occurred');
