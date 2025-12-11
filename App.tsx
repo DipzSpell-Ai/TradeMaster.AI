@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Trade, AppSettings, ThemeColor, User, DailyNote } from './types';
-import Dashboard from './components/Dashboard';
-import TradeList from './components/TradeList';
-import TradeForm from './components/TradeForm';
-import SettingsModal from './components/SettingsModal';
-import PositionCalculator from './components/PositionCalculator';
-import AuthPage from './components/AuthPage';
-import { analyzeTradeWithAI } from './services/geminiService';
-import { supabase, fetchTrades, fetchDailyNotes, saveTradeToDb, deleteTradeFromDb, saveDailyNoteToDb } from './services/supabaseClient';
+import { Trade, AppSettings, ThemeColor, User, DailyNote } from './types.ts';
+import Dashboard from './components/Dashboard.tsx';
+import TradeList from './components/TradeList.tsx';
+import TradeForm from './components/TradeForm.tsx';
+import SettingsModal from './components/SettingsModal.tsx';
+import PositionCalculator from './components/PositionCalculator.tsx';
+import AuthPage from './components/AuthPage.tsx';
+import { analyzeTradeWithAI } from './services/geminiService.ts';
+import { supabase, fetchTrades, fetchDailyNotes, saveTradeToDb, deleteTradeFromDb, saveDailyNoteToDb } from './services/supabaseClient.ts';
 import { LayoutDashboard, BookOpen, Plus, Activity, Bot, X, Sun, Moon, Settings, LogOut, Calculator, Wifi, WifiOff, Heart, PieChart, BarChart3 } from 'lucide-react';
 
 // Color Palette Definitions

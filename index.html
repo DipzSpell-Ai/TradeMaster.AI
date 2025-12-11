@@ -9,6 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 
+    <!-- Babel for in-browser compilation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -96,5 +99,7 @@
 </head>
   <body>
     <div id="root"></div>
+    <!-- Use text/babel for in-browser compilation -->
+    <script type="text/babel" data-type="module" src="./index.tsx" data-presets="react,typescript"></script>
   </body>
 </html>

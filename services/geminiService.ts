@@ -1,5 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
-import { Trade, TradeType, DashboardStats } from "../types";
+import { Trade, TradeType, DashboardStats } from "../types.ts";
 
 const getAIClient = () => new GoogleGenAI({ apiKey: process.env.API_KEY });
 

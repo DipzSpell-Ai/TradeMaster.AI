@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Trade, TradeType, TradeStatus } from '../types';
+import { Trade, TradeType, TradeStatus } from '../types.ts';
 import { 
   X, Save, Eraser, TrendingUp, TrendingDown, Wand2, Percent, 
   History, FileText, ShieldAlert, BrainCircuit, Check

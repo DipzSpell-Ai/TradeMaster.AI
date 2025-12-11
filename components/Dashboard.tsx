@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Cell, ReferenceLine, PieChart, Pie, Legend } from 'recharts';
-import { Trade, TradeStatus, DashboardStats, DailyNote, TradeType } from '../types';
+import { Trade, TradeStatus, DashboardStats, DailyNote, TradeType } from '../types.ts';
 import { TrendingUp, IndianRupee, Activity, Target, Zap, Share2, Calendar as CalendarIcon, PieChart as PieChartIcon, ChevronLeft, ChevronRight, X, MessageCircle, BarChart2, Book, PenLine, Save, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 
 interface DashboardProps {

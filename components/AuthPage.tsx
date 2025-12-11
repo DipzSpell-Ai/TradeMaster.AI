@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from '../services/supabaseClient';
-import { User } from '../types';
+import { supabase } from '../services/supabaseClient.ts';
+import { User } from '../types.ts';
 import { 
   Activity, Mail, Lock, User as UserIcon, ArrowRight, TrendingUp, 
   BrainCircuit, BarChart2, Calculator, Calendar, ShieldCheck 

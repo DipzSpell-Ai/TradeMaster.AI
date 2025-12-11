@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Trade, TradeStatus, TradeType } from '../types';
+import { Trade, TradeStatus, TradeType } from '../types.ts';
 import { Edit2, Trash2, BrainCircuit, ExternalLink, TrendingUp, TrendingDown, Calendar, ArrowRight, Filter } from 'lucide-react';
 
 interface TradeListProps {

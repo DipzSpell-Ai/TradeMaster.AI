@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { Trade, DailyNote, TradeType, TradeStatus } from '../types';
+import { Trade, DailyNote, TradeType, TradeStatus } from '../types.ts';
 
 /* 
   !!! IMPORTANT !!!

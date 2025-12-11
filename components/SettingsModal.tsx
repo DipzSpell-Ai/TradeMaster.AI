@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { X, Check, Download, Upload, Database, Trash2 } from 'lucide-react';
-import { AppSettings, ThemeColor, FontFamily, Trade, DailyNote } from '../types';
+import { AppSettings, ThemeColor, FontFamily, Trade, DailyNote } from '../types.ts';
 
 interface SettingsModalProps {
   settings: AppSettings;
