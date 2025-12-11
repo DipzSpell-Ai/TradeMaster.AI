@@ -8,10 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Babel for in-browser compilation -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
+    
+    <!-- Tailwind CSS (CDN for simplicity in this setup, or you can run init) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -39,7 +37,7 @@
       }
     </script>
     <style>
-      /* Default CSS Variables (Will be overridden by React) */
+      /* Default CSS Variables */
       :root {
         --color-primary-50: #eff6ff;
         --color-primary-100: #dbeafe;
@@ -60,46 +58,33 @@
         width: 8px;
         height: 8px;
       }
-      /* Light Mode Scrollbar */
-      ::-webkit-scrollbar-track {
-        background: #f1f5f9;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #94a3b8;
-      }
+      ::-webkit-scrollbar-track { background: #f1f5f9; }
+      ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
       
-      /* Dark Mode Scrollbar */
-      .dark ::-webkit-scrollbar-track {
-        background: #1e293b;
-      }
-      .dark ::-webkit-scrollbar-thumb {
-        background: #475569;
-      }
-      .dark ::-webkit-scrollbar-thumb:hover {
-        background: #64748b;
-      }
+      .dark ::-webkit-scrollbar-track { background: #1e293b; }
+      .dark ::-webkit-scrollbar-thumb { background: #475569; }
+      .dark ::-webkit-scrollbar-thumb:hover { background: #64748b; }
     </style>
   <script type="importmap">
 {
   "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.2.1/",
-    "react": "https://aistudiocdn.com/react@^19.2.1",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
-    "recharts": "https://aistudiocdn.com/recharts@^3.5.1",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
-    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2.39.0"
+    "lucide-react": "https://esm.sh/lucide-react@^0.560.0",
+    "vite": "https://esm.sh/vite@^7.2.7",
+    "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2",
+    "recharts": "https://esm.sh/recharts@^3.5.1",
+    "react/": "https://esm.sh/react@^19.2.1/",
+    "react": "https://esm.sh/react@^19.2.1",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.1/",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@^2.87.1"
   }
 }
 </script>
 </head>
   <body>
     <div id="root"></div>
-    <!-- Use text/babel for in-browser compilation -->
-    <script type="text/babel" data-type="module" src="./index.tsx" data-presets="react,typescript"></script>
+    <!-- Vite Entry Point -->
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
